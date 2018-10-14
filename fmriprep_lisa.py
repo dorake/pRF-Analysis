@@ -1,5 +1,5 @@
 # Use rsync to copy data from/to server
-# rsync -a --no-g --no-p -vzhe  -o Compression=no -x --progress szinte@lisa.surfsara.nl:/home/szinte/pRF_gazeMod/derivatives/ /home/shared/2017/visual/pRF_gazeMod/
+# rsync -a --no-g --no-p -vzhe  -o Compression=no -x --progress server:/home/ /home
 
 import re
 import os
@@ -18,7 +18,7 @@ batch_string = """# shell for the job:
 # call the programs
 echo "Job $PBS_JOBID started at `date`" | mail $USER -s "Job $PBS_JOBID"
 
-PYTHONPATH="" singularity run /home/szinte/software/poldracklab_fmriprep_1.0.0-2017-12-07-ad31fad01869.img /home/szinte/pRF_gazeMod/sourcedata /home/szinte/pRF_gazeMod/derivatives participant --participant-label SJ_NR -w $TMPDIR/pRF_gazeMod/work --output-space T1w fsaverage5 --nthreads 15 --use-syn-sdc --low-mem --fs-license-file /home/szinte/software/freesurfer/license.txt
+PYTHONPATH="" singularity run /home/poldracklab_fmriprep_1.0.0-2017-12-07-ad31fad01869.img /home/sourcedata /home/derivatives participant --participant-label SJ_NR -w $TMPDIR/pRF_gazeMod/work --output-space T1w fsaverage5 --nthreads 15 --use-syn-sdc --low-mem --fs-license-file /home/software/freesurfer/license.txt
 
 wait          # wait until programs are finished
 
